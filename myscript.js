@@ -10,22 +10,19 @@ else{
     request = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-console.log(request)
-
 request.open('GET', 'data.json');
 
 request.onreadystatechange = function(){
 
-    console.log(request.status);
-    console.log(request.readyState)
-
     if((request.status === 200) && (request.readyState === 4)){
 
-        console.log("pass")
-
         var info = JSON.parse(request.responseText); // parse the response text part of the request
-        console.log(info)
-        var output = '';
+    }
+}
+
+function dataHandler(info){
+
+    var output = '';
 
         for (var i = 0; i <= info.links.length - 1; i++){
             for (key in info.links[i]){
@@ -37,7 +34,4 @@ request.onreadystatechange = function(){
 
         var update = document.getElementById("links");
         update.innerHTML = output;
-    }
 }
-
-request.send();
